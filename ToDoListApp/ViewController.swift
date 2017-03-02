@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate {
     @IBOutlet weak var itemTextField: UITextField!
     @IBOutlet weak var tableView: UITableView!
 
@@ -17,6 +17,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.itemTextField.delegate = self
         tableView.register(ToDoItemTableViewCell.self, forCellReuseIdentifier: "Cell")
 
         // tap on screen outside the keyboard to dismiss the keyboard
@@ -32,9 +33,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
 
     // MARK: Helper functions
-    func hideKeyboard() {
-        view.endEditing(true)
-    }
+//    func hideKeyboard() {
+//        view.endEditing(true)
+//    }
 
     func addNewItem() {
         guard let newItem = itemTextField.text else {
@@ -43,6 +44,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         toDoItems.insert(ToDoItem(text: newItem), at: 0)
         tableView.reloadData()
         itemTextField.text = ""
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        addNewItem()
+        return true
     }
 
     // MARK: Table view data source
@@ -84,6 +90,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
             tableView.reloadData()
         }
+        itemTextField.resignFirstResponder()
     }
 }
 

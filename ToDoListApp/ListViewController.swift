@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     @IBOutlet weak var listTextField: UITextField!
     @IBOutlet weak var listTableView: UITableView!
 
@@ -19,6 +19,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         listTableView.register(ListTableViewCell.self, forCellReuseIdentifier: "ListCell")
+        self.listTextField.delegate = self
 
         // tap on screen outside the keyboard ot dismiss the keyboard
 //        let tapGuesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
@@ -47,6 +48,11 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         toDoLists.insert(ToDoList(text: newList), at: 0)
         listTableView.reloadData()
         listTextField.text = ""
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        addNewList()
+        return true
     }
 
     // MARK: Table view data source
