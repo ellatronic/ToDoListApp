@@ -22,8 +22,9 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.listTextField.delegate = self
 
         // tap on screen outside the keyboard ot dismiss the keyboard
-//        let tapGuesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-//        view.addGestureRecognizer(tapGuesture)
+        let tapGuesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGuesture)
+        tapGuesture.cancelsTouchesInView = false
 
         if toDoLists.count < 0 {
             return
@@ -72,10 +73,12 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
 
+    // Segue
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         listTableView.deselectRow(at: indexPath, animated: true)
         selectedIndexPath = indexPath
         performSegue(withIdentifier: "toItemViewController", sender: self)
+        listTextField.resignFirstResponder()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -86,6 +89,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
 
+    // Swipe to delete
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
