@@ -29,7 +29,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         if toDoLists.count < 0 {
             return
         }
-        toDoLists.append(ToDoList(text: "personal list"))
+        toDoLists.append(ToDoList(text: "Personal list"))
     }
 
     // MARK: IBActions
