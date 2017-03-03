@@ -18,6 +18,6 @@ class ToDoList: NSObject {
     // Initialize ToDoList with default values
     init(text: String) {
         self.text = text
-        self.items = [ToDoItem(text: "walk the dog")]
+        self.items = [ToDoItem(text: "Walk the dog")]
     }
 }
