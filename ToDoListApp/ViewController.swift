@@ -21,8 +21,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.register(ToDoItemTableViewCell.self, forCellReuseIdentifier: "Cell")
 
         // tap on screen outside the keyboard to dismiss the keyboard
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
-//        view.addGestureRecognizer(tapGesture)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
+        view.addGestureRecognizer(tapGesture)
+        tapGesture.cancelsTouchesInView = false
     }
 
     // MARK: IBActions
@@ -33,9 +34,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
 
     // MARK: Helper functions
-//    func hideKeyboard() {
-//        view.endEditing(true)
-//    }
+    func hideKeyboard() {
+        view.endEditing(true)
+    }
 
     func addNewItem() {
         guard let newItem = itemTextField.text else {
@@ -76,6 +77,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return cell
     }
 
+    // Toggle checkmarks
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let item = toDoItems[indexPath.row]
@@ -93,6 +95,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         itemTextField.resignFirstResponder()
     }
 
+    // Swipe to delete
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
