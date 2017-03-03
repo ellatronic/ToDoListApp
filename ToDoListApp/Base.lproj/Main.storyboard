@@ -46,9 +46,10 @@
                                     <outlet property="delegate" destination="mm7-e1-aVB" id="7sV-au-YVI"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yHA-7M-4KJ">
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="yHA-7M-4KJ">
                                 <rect key="frame" x="329" y="72" width="30" height="40"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22.660999298095703"/>
+                                <size key="titleShadowOffset" width="1" height="1"/>
                                 <state key="normal" title="+"/>
                                 <connections>
                                     <action selector="addButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="we6-gi-pOa"/>
